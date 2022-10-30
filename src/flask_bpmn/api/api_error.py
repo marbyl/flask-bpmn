@@ -180,12 +180,12 @@ def handle_exception(exception: Exception) -> flask.wrappers.Response:
             f"https://sentry.io/{organization_slug}/{project_slug}/events/{id}"
         )
 
-    # !!!NOTE!!!: do this after sentry stuff since calling logger.exception e
+    # !!!NOTE!!!: do this after sentry stuff since calling logger.exception edfd
     # seems to break the sentry sdk context where we no longer get back
     # an event id or send out tags like username
     current_app.logger.exception(exception)
 
-    # set api_exception like this to avoid confusing mypy
+    # set api_exception like this to avoid confusing mypy  
     # and what type the object is
     api_exception = None
     if isinstance(exception, ApiError):
